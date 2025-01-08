@@ -1,5 +1,5 @@
 export default function DeleteModal(props) {
-  const { open, setOpen } = props;
+  const { open, setOpen, onDelete } = props;
 
   return (
     <div>
@@ -27,7 +27,9 @@ export default function DeleteModal(props) {
             </div>
 
             <div className="flex flex-row w-full gap-x-4 mt-8">
-              <button className="w-full bg-indigo-500 text-white rounded py-2">Yes</button>
+              <button className="w-full bg-indigo-500 text-white rounded py-2" onClick={onDelete}>
+                Yes
+              </button>
               <button
                 className="w-full border border-indigo-500 text-indigo-500 bg-white rounded py-2"
                 onClick={() => setOpen(false)}
