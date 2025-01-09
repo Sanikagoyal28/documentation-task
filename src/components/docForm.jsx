@@ -119,7 +119,7 @@ export default function DocForm() {
         content: inputValue.content,
         links: inputValue.links,
         attachment: attachments,
-        createdAt: serverTimestamp(),
+        ...(docId ? {} : { createdAt: serverTimestamp() }),
         updatedAt: serverTimestamp(),
       };
 
