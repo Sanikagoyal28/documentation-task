@@ -41,6 +41,7 @@ export default function DocForm() {
         categories: document.categories,
         content: document.content,
         links: document.links,
+        attachment: '',
       });
       return;
     }
@@ -122,7 +123,6 @@ export default function DocForm() {
         ...(docId ? {} : { createdAt: serverTimestamp() }),
         updatedAt: serverTimestamp(),
       };
-
       if (docId) {
         const docRef = doc(db, 'documentation', docId);
         await updateDoc(docRef, data);

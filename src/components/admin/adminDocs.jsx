@@ -16,9 +16,6 @@ export default function AdminDocs() {
   const [deleteId, setDeleteId] = useState('');
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-
-  console.log(adminId, 'admin');
-
   async function getDocuments() {
     try {
       if (!adminId) return;
