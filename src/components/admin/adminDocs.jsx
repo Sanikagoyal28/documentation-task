@@ -64,7 +64,7 @@ export default function AdminDocs() {
 
   return (
     <>
-      <div className="w-full min-h-screen bg-gray-100 p-10">
+      <div className="w-full min-h-screen bg-gray-100 py-10 px-4 sm:p-10">
         <div className="max-w-[1400px] m-auto">
           <div className="flex flex-row justify-between items-center">
             <p className="font-bold text-xl text-gray-800">All Documentations</p>

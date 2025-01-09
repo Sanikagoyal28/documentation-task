@@ -48,6 +48,7 @@ export default function AdminLogin() {
       if (data.password === password) {
         toast.success('Login successful');
         setAdminId(doc.id);
+        localStorage.setItem('adminId', doc.id);
         setEmail('');
         setPassword('');
         navigate('/admin-docs');

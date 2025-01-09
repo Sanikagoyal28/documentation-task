@@ -1,35 +1,14 @@
-import { doc, getDoc } from 'firebase/firestore';
 import { useParams } from 'react-router-dom';
-import { db } from '../firebase';
-import { useEffect, useState } from 'react';
 import Spinner from './utils/Spinner';
+import useDocument from './custom-hooks/getDocument';
 
 export default function DocumentPage() {
   const { docId } = useParams();
-  const [document, setDocument] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-
-  async function getDocumentById() {
-    try {
-      setIsLoading(true);
-      const docRef = doc(db, 'documentation', docId);
-      const docSnapshot = await getDoc(docRef);
-      if (docSnapshot.exists()) {
-        setDocument({ id: docSnapshot.id, ...docSnapshot.data() });
-      }
-      setIsLoading(false);
-    } catch (error) {
-      setIsLoading(false);
-    }
-  }
-
-  useEffect(() => {
-    getDocumentById();
-  }, [docId]);
+  const { document, isLoading } = useDocument(docId);
 
   return (
     <>
-      <div className="w-full min-h-screen bg-gray-100 p-10">
+      <div className="w-full min-h-screen bg-gray-100 py-10 px-4 sm:p-10">
         {isLoading ? (
           <div className="w-full flex items-center justify-center my-4">
             <Spinner />
@@ -46,7 +25,7 @@ export default function DocumentPage() {
               <p className="font-semibold italic mb-2">{document?.description}</p>
               <p className="">{document?.content}</p>
             </div>
-            <div className="flex flex-row gap-x-3">
+            <div className="flex flex-row gap-2 sm:gap-x-3 flex-wrap">
               {document?.categories?.split(',').map((category, index) => (
                 <p key={index} className="bg-gray-300 rounded w-fit px-2 py-1 text-sm">
                   {category.trim()}
@@ -57,7 +36,11 @@ export default function DocumentPage() {
             {document?.attachment
               ? document?.attachment.map((image, index) => {
                   return (
-                    <img key={index} src={image} className="w-3/5 m-auto border-2 border-black" />
+                    <img
+                      key={index}
+                      src={image}
+                      className=" w-11/12 sm:w-4/5 md:w-3/5 m-auto border-2 border-black"
+                    />
                   );
                 })
               : null}

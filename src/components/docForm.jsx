@@ -33,7 +33,7 @@ export default function DocForm() {
   const { document } = useDocument(docId);
 
   useEffect(() => {
-    if (document) {
+    if (adminId && docId && document) {
       setInputValue({
         title: document.title,
         author: document.author,
@@ -44,7 +44,7 @@ export default function DocForm() {
       });
       return;
     }
-  }, [document]);
+  }, [adminId, docId, document]);
 
   function handleAdd() {
     const newLink = {
@@ -160,7 +160,9 @@ export default function DocForm() {
       <div className="w-full min-h-screen bg-gray-100 py-10">
         <div className="bg-white w-11/12 sm:w-3/4 lg:w-1/2 rounded-md py-8 px-4 shadow mx-auto">
           <form className="flex flex-col space-y-5" onSubmit={handleSave}>
-            <p className="text-black font-semibold text-2xl">Add Documentation</p>
+            <p className="text-black font-semibold text-2xl">
+              {docId ? 'Edit' : 'Add'} Documentation
+            </p>
             <InputField
               label="Title"
               type="text"
@@ -256,4 +258,4 @@ export default function DocForm() {
   );
 }
 
-// map edit doc data
+// change created at in edit form

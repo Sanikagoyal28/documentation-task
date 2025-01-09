@@ -13,20 +13,6 @@ export default function InputField(props) {
     maxLength,
   } = props;
 
-  // const [preview, setPreview] = useState(null);
-
-  // const handleFileChange = (e) => {
-  //   const file = e.target.files[0];
-  //   if (file && file.type.startsWith('image/')) {
-  //     const reader = new FileReader();
-  //     reader.onloadend = () => {
-  //       setPreview(reader.result);
-  //     };
-  //     reader.readAsDataURL(file);
-  //   } else {
-  //     setPreview(null);
-  //   }
-  // };
   return (
     <div className={`flex flex-col w-full ${className}`}>
       <label className={`text-sm mb-1 ${labelClassName}`}>{label}</label>
@@ -39,11 +25,6 @@ export default function InputField(props) {
             accept={accept}
             multiple
           />
-          {/* {preview && (
-            <div className="mt-2">
-              <img src={preview} alt="Preview" className="max-w-full h-auto max-h-40 rounded" />
-            </div>
-          )} */}
         </div>
       ) : type === 'textarea' ? (
         <textarea

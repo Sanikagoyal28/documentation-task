@@ -1,12 +1,11 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 export const AdminContext = createContext(null);
 
 export const AdminProvider = ({ children }) => {
   const [adminId, setAdminId] = useState(null);
-  const [editDocId, setEditDocId] = useState(null);
-  return (
-    <AdminContext.Provider value={{ adminId, setAdminId, editDocId, setEditDocId }}>
-      {children}
-    </AdminContext.Provider>
-  );
+
+  useEffect(() => {
+    setAdminId(localStorage.getItem('adminId'));
+  }, []);
+  return <AdminContext.Provider value={{ adminId, setAdminId }}>{children}</AdminContext.Provider>;
 };

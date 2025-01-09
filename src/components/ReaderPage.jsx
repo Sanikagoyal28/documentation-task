@@ -47,13 +47,13 @@ export default function ReaderPage() {
   }
   return (
     <>
-      <div className="w-full min-h-screen bg-gray-100 p-10">
+      <div className="w-full min-h-screen bg-gray-100 py-10 px-4 sm:p-10">
         <div className="max-w-[1400px] m-auto">
-          <div className="flex flex-row justify-between items-center mb-4">
+          <div className="flex flex-col sm:flex-row gap-y-2 sm:gap-y-0 justify-between items-start sm:items-center mb-4">
             <p className="font-bold text-xl text-gray-800">All Documentations</p>
 
             <input
-              className="rounded-lg px-4 py-2 w-72 outline-none focus:border-indigo-500 border border-gray-400"
+              className="rounded-lg px-4 py-2 sm:w-72 outline-none focus:border-indigo-500 border border-gray-400"
               type="text"
               placeholder="Search by title"
               onChange={handleSearch}
@@ -66,7 +66,15 @@ export default function ReaderPage() {
           ) : null}
           {documents.length > 0 ? (
             documents.map((data) => {
-              return <DocCard key={data.id} documentData={data} isEdit={false} isDelete={false} />;
+              return (
+                <DocCard
+                  key={data.id}
+                  documentData={data}
+                  isEdit={false}
+                  isDelete={false}
+                  isReader={true}
+                />
+              );
             })
           ) : (
             <p className="text-lg font-semibold text-center my-4 text-gray-700">
